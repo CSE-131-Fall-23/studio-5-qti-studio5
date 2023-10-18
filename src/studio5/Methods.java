@@ -1,5 +1,7 @@
 package studio5;
 
+import java.awt.Color;
+
 import edu.princeton.cs.introcs.StdDraw;
 
 public class Methods {
@@ -14,9 +16,14 @@ public class Methods {
 	 * @return the Euclidean distance between (x1,y1) and (x2,y2)
 	 */
 	public static double distanceBetween(double x1, double y1, double x2, double y2) {
-		double distance = 0;
+
+		double xDiff = (x2 - x1)*(x2 - x1);
+		double yDiff = (y2 - y1)*(y2 - y1);
+		double xySum = xDiff + yDiff;
+		double distance = Math.sqrt(xySum);
+		System.out.println(distance);
 		// FIXME: Hint use Math methods (e.g. Math.sqrt) to compute the distance
-		
+
 		return distance;
 	}
 
@@ -34,18 +41,22 @@ public class Methods {
 		// TODO: Draw the remaining rings of the bull's eye
 		// Blue ring with 3.0/4.0 the radius
 		// suggested rgb values: 0, 109, 219
+		StdDraw.setPenColor(0, 109, 219);
+		StdDraw.filledCircle(x,y,(3.0/4.0)*radius);
 
-		
 
 		// Red ring with 1.0/2.0 the radius
 		// suggested rgb values: 146, 0, 0
 
-		
+		StdDraw.setPenColor(146, 0, 0);
+		StdDraw.filledCircle(x,y,(1.0/2.0)*radius);
 
 		// Yellow ring with 1.0/4.0 the radius
 		// suggested rgb values: 255, 255, 109
+		StdDraw.setPenColor(255, 255, 109);
+		StdDraw.filledCircle(x,y,(1.0/4.0)*radius);
 
-		
+
 	}
 
 	/**
@@ -62,9 +73,34 @@ public class Methods {
 	public static String substituteAll(String source, char target, String replacement) {
 		String result = "";
 		// TODO: Finish this method
+		//		String[] letters = new String[source.length()];
+		//		for(int k = 0; k<source.length(); k++)
+		//		{
+		//			letters[k] = source.charAt(k);
+		//			
+		//		}
+		String concatenatedText = "";
+		char[] charArray = source.toCharArray();
+
+		for(int i =0; i<source.length(); i++)
+		{
+			if(charArray[i]==target)
+			{
+				concatenatedText += replacement;
+			}
+			else
+			{
+				concatenatedText += charArray[i];
+			}
+		}
 		
-		return result;
+		return concatenatedText;
 	}
+	//	public char[] toCharArray()
+	//	{
+	//		char[] result = source.toCharArray();
+	//		return result;
+	//	}
 
 	/**
 	 * Compute the sum of elements in an array
@@ -74,8 +110,11 @@ public class Methods {
 	 */
 	public static int arraySum(int[] values) {
 		int sum = 0;
+		for(int i = 0; i <values.length; i++) {
+			sum += values[i];
+		}
 		// FIXME: Compute the sum of the values in an array
-		
+
 		return sum;
 	}
 
@@ -87,16 +126,21 @@ public class Methods {
 	 * @return and array of size that's filled with value
 	 */
 	public static int[] filledArray(int length, int value) {
-		int[] values = null; // FIXME: Create an array of the appropriate size
-		// TODO: Finish this method
+		int[] values = new int[length]; 
+		for (int i = 0; i < values.length; i++) {
+			values[i] = value;
+		}
 
-		
 
 		return values;
 	}
 
 	// TODO: Create an arrayMean method which accepts an int array of values parameter.
+	
+	public static double arrayMean(){
+		
+	}
 	// TODO: Create a JavaDoc comment for the arrayMean method.
 
-	
+
 }
